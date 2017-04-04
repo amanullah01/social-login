@@ -137,15 +137,17 @@ class RegisterController extends Controller
    {
        try{
          $sociaUser = Socialite::driver('google')->user();
-        //  echo $sociaUser->avatar_original;
-        //  echo $sociaUser->getAvatar();
-          dd($sociaUser);
+          // echo $sociaUser->getId();
+          // echo $sociaUser->getName();
+          // echo $sociaUser->getEmail();
+          //  echo $sociaUser->getAvatar();
+          //  dd($sociaUser);
        }
        catch(\Exception $e){
          return redirect('/');
        }
-       dd('not google');
 
+       //here facebook id means my gmail unique id, which one i get from getId().
        $user = User::where('facebook_id',$sociaUser->getId() )->first();
 
        if(!$user){
@@ -161,13 +163,13 @@ class RegisterController extends Controller
              $createUser->save();
 
              auth()->login($createUser);
-             return redirect()->to('/home')->with('success_login', 'Successfully Login with facebook');
+             return redirect()->to('/home')->with('success_login', 'Successfully Login with Google+');
           }else{
             return redirect()->to('/login')->with('login_failed', "Sorry! You didn't select Email id. Please try again later");
           }
        }else{
          auth()->login($user);
-         return redirect()->to('/home')->with('success_login', 'Successfully Login with facebook');
+         return redirect()->to('/home')->with('success_login', 'Successfully Login with Google+');
        }
        // $user->token;
    }

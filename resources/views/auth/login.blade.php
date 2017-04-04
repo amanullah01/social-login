@@ -66,6 +66,10 @@
                                 <a href="{{ route('facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i>
                                     Login with Facebook
                                 </a>
+
+                                <a href="{{ route('google') }}" class="btn btn-warning"><i class="fa fa-facebook"></i>
+                                    Login with Google
+                                </a>
                             </div>
                         </div>
                     </form>
