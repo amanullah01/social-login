@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a href="{{ route('facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i>
+                                <a href="{{ route('facebook') }}" class="btn btn-primary"><i class="fa fa-facebook" aria-hidden="true"></i>
                                     Login with Facebook
                                 </a>
 
