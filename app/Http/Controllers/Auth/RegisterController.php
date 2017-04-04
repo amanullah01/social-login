@@ -93,7 +93,7 @@ class RegisterController extends Controller
          $sociaUser = Socialite::driver('facebook')->user();
         //  echo $sociaUser->avatar_original;
         //  echo $sociaUser->getAvatar();
-        //  dd($sociaUser);
+          //dd($sociaUser);
        }
        catch(\Exception $e){
          return redirect('/');
@@ -125,4 +125,51 @@ class RegisterController extends Controller
        // $user->token;
    }
    /*End facebook login*/
+
+
+   /*Start google*/
+   public function redirectToProviderGoogle()
+   {
+       return Socialite::driver('google')->redirect();
+   }
+
+   public function handleProviderCallbackGoogle()
+   {
+       try{
+         $sociaUser = Socialite::driver('google')->user();
+        //  echo $sociaUser->avatar_original;
+        //  echo $sociaUser->getAvatar();
+          dd($sociaUser);
+       }
+       catch(\Exception $e){
+         return redirect('/');
+       }
+       dd('not google');
+
+       $user = User::where('facebook_id',$sociaUser->getId() )->first();
+
+       if(!$user){
+         if($sociaUser->getEmail())
+         {
+             $createUser = new User ;
+
+             $createUser->name = $sociaUser->getName();
+             $createUser->facebook_id = $sociaUser->getId();
+             $createUser->email = $sociaUser->getEmail();
+             $createUser->profile_picture = $sociaUser->getAvatar();
+
+             $createUser->save();
+
+             auth()->login($createUser);
+             return redirect()->to('/home')->with('success_login', 'Successfully Login with facebook');
+          }else{
+            return redirect()->to('/login')->with('login_failed', "Sorry! You didn't select Email id. Please try again later");
+          }
+       }else{
+         auth()->login($user);
+         return redirect()->to('/home')->with('success_login', 'Successfully Login with facebook');
+       }
+       // $user->token;
+   }
+   /*End google*/
 }

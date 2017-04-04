@@ -25,6 +25,7 @@ Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCall
 
 /*End social login*/
 Route::group(['prefix' => 'auth','namespace' => 'Auth'], function() {
+  /*facebook*/
   Route::get('facebook', [
       'as' => 'facebook', 'uses' => 'RegisterController@redirectToProvider'
   ]);
@@ -32,4 +33,15 @@ Route::group(['prefix' => 'auth','namespace' => 'Auth'], function() {
   Route::get('facebook/callback', [
       'as' => 'facebook/callback', 'uses' => 'RegisterController@handleProviderCallback'
   ]);
+  /*End facebook*/
+
+  /*google*/
+  Route::get('google', [
+      'as' => 'google', 'uses' => 'RegisterController@redirectToProviderGoogle'
+  ]);
+
+  Route::get('google/callback', [
+      'as' => 'google/callback', 'uses' => 'RegisterController@handleProviderCallbackGoogle'
+  ]);
+  /*End google*/
 });

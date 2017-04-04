@@ -40,5 +40,10 @@ return [
         'client_secret' => '60fd2ac55bbd3d6c15d440db46e6c2c0',
         'redirect' => 'http://localhost/practice/social-login/public/auth/facebook/callback',
     ],
+    'google' => [
+        'client_id' => '250852905861-b3fos9ivqr4664m2k4ldgj85s52v3b14.apps.googleusercontent.com',
+        'client_secret' => '1VXXzJLZWaTH9XpoanZPgHDS',
+        'redirect' => 'http://localhost/practice/social-login/public/auth/google/callback',
+    ],
 
 ];
