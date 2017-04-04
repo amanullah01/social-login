@@ -89,6 +89,7 @@ class RegisterController extends Controller
     */
    public function handleProviderCallback()
    {
+      /*Need to write validation*/
        try{
          $sociaUser = Socialite::driver('facebook')->user();
         //  echo $sociaUser->avatar_original;
@@ -99,7 +100,7 @@ class RegisterController extends Controller
          return redirect('/');
        }
 
-       $user = User::where('facebook_id',$sociaUser->getId() )->first();
+       $user = User::where('provider_id',$sociaUser->getId() )->first();
 
        if(!$user){
          if($sociaUser->getEmail())
@@ -107,7 +108,7 @@ class RegisterController extends Controller
              $createUser = new User ;
 
              $createUser->name = $sociaUser->getName();
-             $createUser->facebook_id = $sociaUser->getId();
+             $createUser->provider_id = $sociaUser->getId();
              $createUser->email = $sociaUser->getEmail();
              $createUser->profile_picture = $sociaUser->getAvatar();
 
@@ -135,6 +136,7 @@ class RegisterController extends Controller
 
    public function handleProviderCallbackGoogle()
    {
+      /*Need to write validation*/
        try{
          $sociaUser = Socialite::driver('google')->user();
           // echo $sociaUser->getId();
@@ -147,8 +149,7 @@ class RegisterController extends Controller
          return redirect('/');
        }
 
-       //here facebook id means my gmail unique id, which one i get from getId().
-       $user = User::where('facebook_id',$sociaUser->getId() )->first();
+       $user = User::where('provider_id',$sociaUser->getId() )->first();
 
        if(!$user){
          if($sociaUser->getEmail())
@@ -156,7 +157,7 @@ class RegisterController extends Controller
              $createUser = new User ;
 
              $createUser->name = $sociaUser->getName();
-             $createUser->facebook_id = $sociaUser->getId();
+             $createUser->provider_id = $sociaUser->getId();
              $createUser->email = $sociaUser->getEmail();
              $createUser->profile_picture = $sociaUser->getAvatar();
 
