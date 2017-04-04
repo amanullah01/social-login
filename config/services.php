@@ -36,9 +36,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => 'your-facebook-app-id',
-        'client_secret' => 'your-facebook-secret-key',
-        'redirect' => 'your-redirect-url',
+        'client_id' => '219926621821646',
+        'client_secret' => '60fd2ac55bbd3d6c15d440db46e6c2c0',
+        'redirect' => 'http://localhost/practice/social-login/public/auth/facebook/callback',
     ],
 
 ];
